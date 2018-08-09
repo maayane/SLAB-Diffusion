@@ -39,7 +39,7 @@ If you are using SLAB-Diffusion, please reference Soumagnac et al. 2018
 ## How to run the `SLAB-Diffusion` code?
 
 ### Edit the params.py file
-The default errors are those used in Soumagnac et al. 2018.
+The default parameters are those used in Soumagnac et al. 2018.
 After every modification of `params.py`, rerun
 
 ```python
