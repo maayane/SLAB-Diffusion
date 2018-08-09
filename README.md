@@ -1,5 +1,5 @@
-# SLAB-Diffusion
-The `SLAB-Diffusion` package is a tool for modeling the diffusion of photons through a slab of CSM, e.g. in order to simulate the observables (effective blackbody temperature and radius) of an interacting Supernova.
+# SLAB_Diffusion
+The `SLAB-Diffusion` package is a tool for modeling the radiative diffusion of photons through a slab of circumstellar material (CSM), e.g. in order to simulate the observables (effective blackbody temperature and radius) of an interacting Supernova.
 
 [![PyPI](https://img.shields.io/pypi/v/SLAB-Diffusion.svg?style=flat-square)](https://pypi.python.org/pypi/SLAB-Diffusion)
 
@@ -10,9 +10,9 @@ The `SLAB-Diffusion` package is a tool for modeling the diffusion of photons thr
 
 ## Documenation
 
-The HDF5/HTM format, designed to store and provide fast access for large astronomical catalogs (with >10^6 rows) is described in the [preliminary documentation](https://webhome.weizmann.ac.il/home/eofek/matlab/doc/catsHTM.html), together with the `Matlab` version.
+The `SLAB_Diffusion` package was used in [Soumagnac et al, 2018]() to model the radiative diffusion of photons through a slab of circumstellar material. 
 
-The `catsHTM` package is also described in a paper by [Soumagnac & Ofek 2018](https://arxiv.org/abs/1805.02666).
+The version available here assumes constant density (and hence diffusion constant) in the slab. A more sophisticated version with varying density can be made available on demand by emailing maayane.soumagnac at weizmann.ac.il
 
 ## Credit
 If you are using SLAB-Diffusion, please reference Soumagnac et al. 2018 
@@ -23,7 +23,7 @@ If you are using SLAB-Diffusion, please reference Soumagnac et al. 2018
 
 ### pip
 
-`pip install SLAB-Diffusion`
+`pip install SLAB_Diffusion`
 
 ### Python version
 * `python 2`: higher than `2.7.10`
