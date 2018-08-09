@@ -251,11 +251,11 @@ def plot_u_latest_time(u,spacez,time,time_Units=None,output_file='.',show_plots=
     #im0=ax1.matshow(u[-1,:,:,Nz/2].T,cmap=pylab.get_cmap('hot'),vmin=0,vmax=0.002)
     #im1=ax2.matshow(u[-1, :, :, Nz].T,cmap=pylab.get_cmap('hot'),vmin=0,vmax=0.002)
     if time_Units == 's':
-        ax1.set_title('t={0} days, z=h/2'.format(round(time[-1]/(24*3600), 3)),y=1.08)
-        ax2.set_title('t={0} days, z=h'.format(round(time[-1]/(24*3600),3)),y=1.08)
+        ax1.set_title('t={0} days, z=0'.format(round(time[-1]/(24*3600), 3)),y=1.08)
+        ax2.set_title('t={0} days, z=h/2'.format(round(time[-1]/(24*3600),3)),y=1.08)
     elif time_Units=='tD':
-        ax1.set_title('t/tD={0}, z=h/2'.format(round(time[-1], 3)),y=1.08)
-        ax2.set_title('t/tD={0}, z=h'.format(round(time[-1],3)),y=1.08)
+        ax1.set_title('t/tD={0}, z=0'.format(round(time[-1], 3)),y=1.08)
+        ax2.set_title('t/tD={0}, z=h/2'.format(round(time[-1],3)),y=1.08)
     pylab.subplots_adjust(wspace=0.33)
     ax1.set_xlabel('x direction (meshpoint index)')
     ax2.set_xlabel('x direction (meshpoint index)')

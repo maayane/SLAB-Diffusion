@@ -236,6 +236,7 @@ def fit_black_body_flux_spec(Spec,TempVec=None,FLuxUnits=None,comments="#",WaveU
 	#******************** Plots ************************
 
 	#Plot the fitting results
+	'''
 	pylab.figure()
 	if Ebv!=0 and z==0:
 		print('You provided extinction corrections only')
@@ -278,6 +279,7 @@ def fit_black_body_flux_spec(Spec,TempVec=None,FLuxUnits=None,comments="#",WaveU
 
 
 	#Plot Xi_array fields
+
 	f, axarr = pylab.subplots(3, sharex=True)
 	#x_formatter = ScalarFormatter(useOffset=False)
 	axarr[0].plot(Xi_array[:,0], Xi_array[:,2], 'b',
@@ -299,6 +301,7 @@ def fit_black_body_flux_spec(Spec,TempVec=None,FLuxUnits=None,comments="#",WaveU
 	#pylab.xlim(min(julian_days_NUV), max(julian_days_NUV))
 	#pylab.legend(label=['common measurement days'])
 	# pylab.gca().invert_yaxis()
+
 	axarr[1].grid()
 	axarr[1].axvline(x=best_temp,color='k',linestyle='--')
 	if TempVec is None:
@@ -321,6 +324,7 @@ def fit_black_body_flux_spec(Spec,TempVec=None,FLuxUnits=None,comments="#",WaveU
 
 	if show_plot == True:
 		pylab.show()
+	'''
 	if Verbose=='on':
 		print('The best fit temperature is {0} and the best fit radius is {1}, and the best coef is {2}'.format(best_temp,best_radius,best_coeff1))
 	result_matrix=np.zeros((1,6))

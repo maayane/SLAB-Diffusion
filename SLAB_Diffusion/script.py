@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 
 __all__=['calculate_T_and_R_in_time']
 
-print(params.dillution_factor)
+#print(params.dillution_factor)
 #pdb.set_trace()
 Nx=160
 Ny=160

@@ -81,7 +81,7 @@ def solver_3D_norm(Nx,Ny,Nz,Lx,Ly,Initial_xyz,F,v,a,total_time,reflecting=True,E
     pylab.matshow(u[0,:,:,int(Nz/2)].T)
     pylab.xlabel('x axis')
     pylab.ylabel('y axis')
-    pylab.title('Initial condition, at z=h/2',y=1.08)
+    pylab.title('Initial condition, at z=0',y=1.08)
     pylab.colorbar()
     #pylab.show()
     #pdb.set_trace()
