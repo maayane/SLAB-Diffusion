@@ -29,7 +29,7 @@ setup(
     keywords='astronomy',  # Optional
 
     packages=["SLAB_Diffusion"],
-    install_requires=['scipy'],  # Optional
+    install_requires=['numpy','matplotlib'],  # Optional
     python_requires='>=2.7.10',
 
     project_urls={ 	

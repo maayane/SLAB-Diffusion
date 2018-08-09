@@ -152,6 +152,7 @@ def plot_cuts_2D_u(u,space_z,time,time_Units=None,output_file='.',dilution_facto
             fig.subplots_adjust(right=0.8)
             cbar_ax = fig.add_axes([0.85, 0.15, 0.05, 0.7])
             fig.colorbar(im0, cax=cbar_ax)
+            pylab.tight_layout()
             pylab.savefig(output_file+'/images2D/image_'+str(t).zfill(5)+'.png', bbox_inches='tight')
             #pylab.show()
             #pdb.set_trace()
@@ -205,6 +206,7 @@ def plot_cuts_2D_u(u,space_z,time,time_Units=None,output_file='.',dilution_facto
             fig.subplots_adjust(right=0.8)
             cbar_ax = fig.add_axes([0.85, 0.15, 0.05, 0.7])
             fig.colorbar(im0, cax=cbar_ax)
+            pylab.tight_layout()
             pylab.savefig(output_file+'/images2D/image_'+str(t).zfill(5)+'.png', bbox_inches='tight')
             #pylab.show()
             #pdb.set_trace()
@@ -249,11 +251,11 @@ def plot_u_latest_time(u,spacez,time,time_Units=None,output_file='.',show_plots=
     #im0=ax1.matshow(u[-1,:,:,Nz/2].T,cmap=pylab.get_cmap('hot'),vmin=0,vmax=0.002)
     #im1=ax2.matshow(u[-1, :, :, Nz].T,cmap=pylab.get_cmap('hot'),vmin=0,vmax=0.002)
     if time_Units == 's':
-        ax1.set_title('t={0} days, z=h/2'.format(round(time[-1]/(24*3600), 3)))
-        ax2.set_title('t={0} days, z=h'.format(round(time[-1]/(24*3600),3)))
+        ax1.set_title('t={0} days, z=h/2'.format(round(time[-1]/(24*3600), 3)),y=1.08)
+        ax2.set_title('t={0} days, z=h'.format(round(time[-1]/(24*3600),3)),y=1.08)
     elif time_Units=='tD':
-        ax1.set_title('t/tD={0}, z=h/2'.format(round(time[-1], 3)))
-        ax2.set_title('t/tD={0}, z=h'.format(round(time[-1],3)))
+        ax1.set_title('t/tD={0}, z=h/2'.format(round(time[-1], 3)),y=1.08)
+        ax2.set_title('t/tD={0}, z=h'.format(round(time[-1],3)),y=1.08)
     pylab.subplots_adjust(wspace=0.33)
     ax1.set_xlabel('x direction (meshpoint index)')
     ax2.set_xlabel('x direction (meshpoint index)')
@@ -261,6 +263,7 @@ def plot_u_latest_time(u,spacez,time,time_Units=None,output_file='.',show_plots=
     fig.subplots_adjust(right=0.8)
     cbar_ax = fig.add_axes([0.85, 0.15, 0.05, 0.7])
     fig.colorbar(im0, cax=cbar_ax)
+    #pylab.tight_layout()
     pylab.savefig(output_file+'/images2D/image_'+str(time[-1]).zfill(5)+'.png', bbox_inches='tight')
     if show_plots==True:
         pylab.show()
@@ -405,6 +408,7 @@ def plot_cuts_2D_temp(temp,space_z,time,time_Units=None,output_file='.',dilution
             fig.subplots_adjust(right=0.8)
             cbar_ax = fig.add_axes([0.85, 0.15, 0.05, 0.7])
             fig.colorbar(im0, cax=cbar_ax)
+            pylab.tight_layout()
             pylab.savefig(output_file+'/images2D_temp/image_'+str(t).zfill(5)+'.png', bbox_inches='tight')
             #pylab.show()
             #pdb.set_trace()
@@ -430,6 +434,7 @@ def plot_cuts_2D_temp(temp,space_z,time,time_Units=None,output_file='.',dilution
             fig.subplots_adjust(right=0.8)
             cbar_ax = fig.add_axes([0.85, 0.15, 0.05, 0.7])
             fig.colorbar(im0, cax=cbar_ax)
+            pylab.tight_layout()
             pylab.savefig(output_file+'/images2D_temp/image_'+str(t).zfill(5)+'.png', bbox_inches='tight')
     if show_plots==True:
         pylab.show()
@@ -482,6 +487,7 @@ def plot_temp_latest_time(temp,spacez,time,time_Units=None,output_file='.',show_
     fig.subplots_adjust(right=0.8)
     cbar_ax = fig.add_axes([0.85, 0.15, 0.05, 0.7])
     fig.colorbar(im0, cax=cbar_ax)
+    pylab.tight_layout()
     pylab.savefig(output_file + '/images2D_temp/image_' + str(time[-1]).zfill(5) + '.png', bbox_inches='tight')
     if show_plots == True:
         pylab.show()

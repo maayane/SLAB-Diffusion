@@ -23,7 +23,7 @@ from . import params
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-__all__=['params']
+__all__=['calculate_T_and_R_in_time']
 
 print(params.dillution_factor)
 #pdb.set_trace()
@@ -88,8 +88,9 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
         pylab.matshow(temp[-1,:,:].T)
         pylab.xlabel('x axis')
         pylab.ylabel('y axis')
-        pylab.title('final temperature at z=h')
+        pylab.title('final temperature at z=h/2',y=1.08)
         pylab.colorbar()
+        #pylab.tight_layout()
         pylab.show()
     else:
         time = np.linspace(0, total_time, num=Nt + 1)
@@ -267,7 +268,7 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
     plt.xlim(0.01,1)
     #plt.ylim(0,16e15)
     plt.setp(ax2.get_xticklabels(), visible=False)
-    pylab.tight_layout()
+    #pylab.tight_layout()
     #plt.savefig('./paper_figures/kernel_comparision_same_xaxis.pdf', facecolor='w', edgecolor='w',
     #              orientation='portrait',
     #              papertype=None, format='pdf', transparent=False, bbox_inches=None, pad_inches=0.5)
