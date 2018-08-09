@@ -32,4 +32,6 @@ If you are using SLAB-Diffusion, please reference Soumagnac et al. 2018
 ### Required python packages
 * `math`
 * `numpy`
-
+* `pylab`
+* `math`
+*  `matplotlib`

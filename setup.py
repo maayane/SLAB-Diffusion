@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-from codecs import open
 from os import path
 
 here = path.abspath(path.dirname(__file__))
@@ -9,7 +8,7 @@ here = path.abspath(path.dirname(__file__))
 #    long_description = f.read()
 
 setup(
-    name='SLAB-Diffusion',
+    name='SLAB_Diffusion',
     version='0.0.1',
     description='models the radiative diffusion of photons through a slab of CSM and evaluates the observed radius and temperature',
     #long_description=long_description,
@@ -29,7 +28,7 @@ setup(
 
     keywords='astronomy',  # Optional
 
-    packages=["SLAB-Diffusion"],
+    packages=["SLAB_Diffusion"],
     install_requires=['scipy'],  # Optional
     python_requires='>=2.7.10',
 
