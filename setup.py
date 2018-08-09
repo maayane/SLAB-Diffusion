@@ -9,13 +9,13 @@ here = path.abspath(path.dirname(__file__))
 #    long_description = f.read()
 
 setup(
-    name='catsHTM',
-    version='0.1.16',
-    description='fast access to large astronomical catalogs',
+    name='SLAB-Diffusion',
+    version='0.0.1',
+    description='models the radiative diffusion of photons through a slab of CSM and evaluates the observed radius and temperature',
     #long_description=long_description,
     #long_description_content_type='text/markdown',
-    url='https://github.com/maayane/catsHTM',  # Optional
-    author='Maayane T. Soumagnac, according to a matlab code by Eran O. Ofek',
+    url='https://github.com/maayane/SLAB-Diffusion',  # Optional
+    author='Maayane T. Soumagnac',
     author_email='maayane.soumagnac@weizmann.ac.il',  # Optional
     classifiers=[ 
         'Intended Audience :: Science/Research',
@@ -27,18 +27,15 @@ setup(
         'Operating System :: MacOS',
     ],
 
-    keywords='astronomy catalogs cone-search cross-matching',  # Optional
+    keywords='astronomy',  # Optional
 
-    packages=["catsHTM"],
-    install_requires=['h5py','scipy'],  # Optional
+    packages=["SLAB-Diffusion"],
+    install_requires=['scipy'],  # Optional
     python_requires='>=2.7.10',
 
-    project_urls={ 
-	'Preliminary documentation': 'https://webhome.weizmann.ac.il/home/eofek/matlab/doc/catsHTM.html',	
-        'Bug Reports': 'https://github.com/maayane/catsHTM/issues',
-        'Matlab Version': 'https://webhome.weizmann.ac.il/home/eofek/matlab/doc/install.html',
-        'Credit Page': 'https://webhome.weizmann.ac.il/home/eofek/matlab/doc/catsHTMcredit.html',
-        'Source': 'https://github.com/maayane/catsHTM',
+    project_urls={ 	
+        'Bug Reports': 'https://github.com/maayane/SLAB-Diffusion/issues',
+        'Source': 'https://github.com/maayane/SLAB-Diffusion',
     },
 )
 
