@@ -9,7 +9,7 @@ here = path.abspath(path.dirname(__file__))
 
 setup(
     name='SLAB_Diffusion',
-    version='0.0.1',
+    version='0.0.2',
     description='models the radiative diffusion of photons through a slab of CSM and evaluates the observed radius and temperature',
     #long_description=long_description,
     #long_description_content_type='text/markdown',
