@@ -21,7 +21,7 @@ If you are using SLAB-Diffusion, please reference Soumagnac et al. 2018
 
 ## How to install the `SLAB-Diffusion` code?
 
-### pip (available from the 12/08/18)
+### pip
 
 `pip install SLAB_Diffusion`
 
