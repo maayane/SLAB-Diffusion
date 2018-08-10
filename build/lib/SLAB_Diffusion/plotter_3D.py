@@ -235,11 +235,11 @@ def plot_u_latest_time(u,spacez,time,time_Units=None,output_file='.',show_plots=
             my_solver.solver_FE_2D_raw_of_initials_along_x(Nx,Nz,L=L,h=h,Initial_x=Initial_symetric,D=1,F=0.2,total_time=20,show_plots=False)
     must give the same result.
     Reliable:  """
-    print('************ I am plotting the energy density at the latest time *******************')
+    #print('************ I am plotting the energy density at the latest time *******************')
 
     Nz=int(np.shape(spacez)[0]-1)
     #print(Nz/2)
-    print('Nz is',Nz)
+    #print('Nz is',Nz)
 
     ###### Plots u at latest time, at z=h/2 and at z=h)
 
@@ -254,8 +254,8 @@ def plot_u_latest_time(u,spacez,time,time_Units=None,output_file='.',show_plots=
         ax1.set_title('t={0} days, z=0'.format(round(time[-1]/(24*3600), 3)),y=1.08)
         ax2.set_title('t={0} days, z=h/2'.format(round(time[-1]/(24*3600),3)),y=1.08)
     elif time_Units=='tD':
-        ax1.set_title('t/tD={0}, z=0'.format(round(time[-1], 3)),y=1.08)
-        ax2.set_title('t/tD={0}, z=h/2'.format(round(time[-1],3)),y=1.08)
+        ax1.set_title('$u(t/tD={0})$, centre of the slab'.format(round(time[-1], 3)),y=1.08)#z=0
+        ax2.set_title('$u(t/tD={0})$, surface of the slab'.format(round(time[-1],3)),y=1.08)#z=h/2
     pylab.subplots_adjust(wspace=0.33)
     ax1.set_xlabel('x direction (meshpoint index)')
     ax2.set_xlabel('x direction (meshpoint index)')
@@ -263,6 +263,7 @@ def plot_u_latest_time(u,spacez,time,time_Units=None,output_file='.',show_plots=
     fig.subplots_adjust(right=0.8)
     cbar_ax = fig.add_axes([0.85, 0.15, 0.05, 0.7])
     fig.colorbar(im0, cax=cbar_ax)
+    #ax1.set_title('Normalized volume density of energy (u)')
     #pylab.tight_layout()
     pylab.savefig(output_file+'/images2D/image_'+str(time[-1]).zfill(5)+'.png', bbox_inches='tight')
     if show_plots==True:

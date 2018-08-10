@@ -2,7 +2,8 @@
 """*******************************************************
 SLAB-Diffusion: solves diffusion equation, for a constant density profile.
 Calculates the evolution in time of T and R.
-Make a figure like Figure 11 of Soumagnac et al 2018
+The code plots various 2D-cuts of the slab, as well as several observables computed at the surface.
+and a figure like Figure 11 of Soumagnac et al 2018.
 ******************************************************"""
 print(__doc__)
 
@@ -80,7 +81,7 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
         initial_energy_density=1.#5000.0 #erg/cm^3
     
         a_bb = 4 * sig_cgs/ c_cgs
-        print('I am calculating temp at the surface')
+        print('I am calculating the temperature at the surface of the slab')
         temp=np.zeros((Nt + 1, Nx + 1, Ny+1))
         temp[:,:,:] = np.power(1. / a_bb * u[:,:,:,Nz], 0.25)
         #plotter_3D.plot_cuts_2D_temp(temp,spacez,time,time_Units='tD',output_file=output_file,dilution_factor=dilution_factor,show_plots=True)
@@ -88,10 +89,10 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
         pylab.matshow(temp[-1,:,:].T)
         pylab.xlabel('x axis')
         pylab.ylabel('y axis')
-        pylab.title('final temperature at z=h/2',y=1.08)
+        pylab.title('final temperature at the surface of the slab',y=1.08)#z=h/2
         pylab.colorbar()
         #pylab.tight_layout()
-        pylab.show()
+        #pylab.show()
     else:
         time = np.linspace(0, total_time, num=Nt + 1)
     
@@ -99,8 +100,8 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
     print('dilution_factor',dilution_factor)
     time_diluted = time[::dilution_factor]
     index_dilute = range(Nt+1)[::dilution_factor]
-    print(np.shape(time_diluted))
-    print(np.shape(index_dilute))
+    #print(np.shape(time_diluted))
+    #print(np.shape(index_dilute))
     
     Sum_BB_fromfile=np.zeros((len(time[::dilution_factor]),100))
     
@@ -108,9 +109,10 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
     if already_run==False:
         for t, s in enumerate(time_diluted):
             Sum_BB_ind = np.zeros((100))
-            print(t)
-            print(s)
-            print('I am looking at the edge at time-meshpoint {0}, i.e time {1}'.format(index_dilute[t], s))
+            #print(t)
+            #print(s)
+            print('*********************')
+            print('Computing the observables at the surface of the slab for t/tD={0} (total time is {1})'.format(s,total_time))
             # edge = u[t, :, :, Nz]
             #if s >= tmin and s <= tmax:
             time_observed.append(s)
@@ -138,7 +140,7 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
     time_observed_x=[]
     for t, s in enumerate(time_diluted):
         #if s >= tmin and s <= tmax:
-        print('I am looking at the edge at time-meshpoint {0}, i.e time {1}'.format(int(index_dilute[t]), s))
+        #print('I am looking at the edge at time-meshpoint {0}, i.e time {1}'.format(int(index_dilute[t]), s))
         time_observed_x.append(s)
     np.savetxt(output_file+'/time_observed.txt',time_observed_x)
     
@@ -150,12 +152,12 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
     for t, s in enumerate(time_diluted): #10s per step 1days~6 steps (60 s per day), 50 days en 50 min
         Sum_BB_fromfile[t,:]=np.genfromtxt(output_file+'/Sum_BB_time_{0}.txt'.format(s))
     
-    print(np.shape(Sum_BB_fromfile))
-    print(Sum_BB_fromfile[0,:])
+    #print(np.shape(Sum_BB_fromfile))
+    #print(Sum_BB_fromfile[0,:])
     
     pylab.figure()
     for t,s in enumerate(time_observed_fromfile):
-        print(t)
+        #print(t)
         pylab.plot(np.linspace(1e-10,1e-6,num=100)*1e9,Sum_BB_fromfile[t,:])
     pylab.xlabel('wavelegth [$nm$]')
     pylab.ylabel(r'$B_\lambda$ [$erg/s/cm^2/\AA$]')
@@ -170,7 +172,7 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
     if already_fit==False:
         BB_evo=np.zeros((np.shape(time_observed_fromfile)[0],4))
         for t, s in enumerate(time_observed_fromfile):
-            print('I am looking at time {0}'.format(s))
+            #print('I am looking at time {0}'.format(s))
             Sum_BB_fromfile_w_wavelengths = np.zeros((100, 2))
             Sum_BB_fromfile_w_wavelengths[:, 0] = np.linspace(1e-10, 1e-6, num=100)
             Sum_BB_fromfile_w_wavelengths[:, 1] = Sum_BB_fromfile[t, :]
@@ -183,7 +185,7 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
     
     
     BB_evo_fromfile=np.genfromtxt(output_file+'/Sum_BB_properties.txt',skip_header=1)
-    
+    '''
     pylab.figure()
     pylab.plot(BB_evo_fromfile[:,0],BB_evo_fromfile[:,1],'r-')
     pylab.xlabel(r'$\frac{t}{h^2/D(z=h)}$',fontsize=25)
@@ -198,53 +200,83 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
     BB_evo_fromfile=np.genfromtxt(output_file+'/Sum_BB_properties.txt',skip_header=1)
     pylab.figure()
     pylab.plot(BB_evo_fromfile[:,0],BB_evo_fromfile[:,2],'bo')
-    pylab.xlabel('time [t/]')
+    pylab.xlabel(r'time [t/t_D]')
     pylab.ylabel('radius [arb]')
     pylab.title('Spectrum BB radius')
     pylab.grid()
     pylab.savefig(output_file+'/edge_spectrum_BB_R.png', bbox_inches='tight')
-
     pylab.show()
+    '''
 
+    #########################################################################
+    u_total_Dcst = np.zeros(np.shape(time))
+    u_grid = np.zeros(np.shape(time))
+    flux = np.zeros((np.shape(time)[0], Nx + 1, Ny + 1))
+    energy_released_in_time = np.zeros(np.shape(time))
+    #print(np.shape(flux))
+    # pdb.set_trace()
+    flux_in_time = np.zeros((np.shape(time)[0]))
+    print('I am caluclating u at the edge over time and u in the grid over time')
+    for t, s in enumerate(time):
+        u_total_Dcst[t] = np.sum(u[t, :, :, -1])
+        u_grid[t] = np.sum(u[t, :, :, :])
+
+    kernel_Dcst = np.zeros((np.shape(u_total_Dcst)[0], 2))
+    kernel_Dcst[:, 0] = time
+    kernel_Dcst[:, 1] = u_total_Dcst
+    coeff_boundary = v / a
+    surface_elementaire = (space_x[1] - space_x[0]) * (space_y[1] - space_y[0])
+    Luminosities = c_cgs / a * u_total_Dcst * surface_elementaire * true_h ** 2  # u est en erg/cm^3, surface_elementaire *true_h**2 est en cm2, c^2/a est le vrai coeff buondary
+    np.savetxt(output_file+'/Luminosities_Dcst.txt', Luminosities)
+    #else:
+    #time = np.linspace(0, total_time, num=Nt + 1)
+
+    #########################################################################
     temperatures=np.genfromtxt(output_file+'/Sum_BB_properties.txt',skip_header=1)[:,1]
-    Luminosities=np.genfromtxt(output_file+'/Luminosities_Dcst_2.txt')
+    Luminosities=np.genfromtxt(output_file+'/Luminosities_Dcst.txt')
 
-    dilution_factor_1=25
+    dilution_factor_1=dilution_factor
     dilution_factor_2=1
     Luminosities_diluted=Luminosities[::dilution_factor_1]
 
     pylab.figure()
-    pylab.plot(Luminosities)
-    pylab.show()
 
-    print(Luminosities_diluted)
+    pylab.plot(time,Luminosities)
+    pylab.xlabel(r'$\frac{t}{t_D}$', fontsize=25)
+    pylab.ylabel(r'$erg/s$', fontsize=25)
+    pylab.title('Total brightness at the surface')
+    pylab.tight_layout()
+    pylab.savefig(output_file + '/brightness_surface.png', bbox_inches='tight')
+    #pylab.show()
+
+    #print(Luminosities_diluted)
 
     #pdb.set_trace()
 
     radii=np.power((1./(4*math.pi*sig_cgs)*np.multiply(Luminosities_diluted,1/np.power(temperatures,4))),0.5)
-    time_Dcst_diluted=time[::dilution_factor_1]
+    time_diluted=time[::dilution_factor_1]
 
-    time_Dcst_diluted_more=time_Dcst_diluted[::dilution_factor_2]
+    time_diluted_more=time_diluted[::dilution_factor_2]
     radii_diluted_more=radii[::dilution_factor_2]
 
     pylab.figure()
-    pylab.plot(time_Dcst_diluted_more,radii_diluted_more,'b-')
+    pylab.plot(time_diluted_more,radii_diluted_more,'b-')
     pylab.grid()
-    pylab.xlabel(r'$\frac{t}{h^2/D(z=h)}$',fontsize=25)
+    pylab.xlabel(r'$\frac{t}{t_D}$',fontsize=25)
     pylab.ylabel(r'Radius $r_{BB}$ [cm]', fontsize=25)
-    pylab.savefig(output_file+'/edge_spectrum_BB_R_2.png',bbox_inches='tight')
-    pylab.show()
+    pylab.tight_layout()
+    pylab.savefig(output_file+'/Radius_surface.png',bbox_inches='tight')
+    #pylab.show()
 
     #only if you ran solver_diffusion_and_calc_spectrum_w_true_values.py before
     BB_evo_fromfile=np.genfromtxt(output_file+'/Sum_BB_properties.txt',skip_header=1)
 
     #pylab.figure()
-
     #pylab.title('Spectrum BB temperature')
     #pylab.savefig(output_file/edge_spectrum_BB_T.png', bbox_inches='tight')
 
 
-    pylab.figure()
+    #pylab.figure()
     f = plt.figure(figsize=(8,8))
     ax1 = plt.subplot(212)
     plt.plot(BB_evo_fromfile[:,0],BB_evo_fromfile[:,1],'r-')
@@ -258,7 +290,7 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
     plt.xticks(fontsize=16)
     # share x only
     ax2 = plt.subplot(211, sharex=ax1)
-    plt.plot(time_Dcst_diluted_more,radii_diluted_more/1e15,'b-')
+    plt.plot(time_diluted_more,radii_diluted_more/1e15,'b-')
     pylab.grid(True, which="both")
     #plt.xlabel(r'$\frac{t}{h^2/D(z=h)}$',fontsize=25)
     plt.ylabel(r'Radius $r_{BB}$ [$\rm{10^{15}}\,$cm]', fontsize=18)
@@ -268,11 +300,11 @@ def calculate_T_and_R_in_time(total_time=params.total_time,Etot=params.E,true_h=
     plt.xlim(0.01,1)
     #plt.ylim(0,16e15)
     plt.setp(ax2.get_xticklabels(), visible=False)
-    #pylab.tight_layout()
+    pylab.tight_layout()
     #plt.savefig('./paper_figures/kernel_comparision_same_xaxis.pdf', facecolor='w', edgecolor='w',
     #              orientation='portrait',
     #              papertype=None, format='pdf', transparent=False, bbox_inches=None, pad_inches=0.5)
-    plt.savefig(output_file+'/edge_spectrum_BB_R_T_sameaxis.png',bbox_inches='tight')
+    plt.savefig(output_file+'/R_T_surface.png',bbox_inches='tight')
 
 
     pylab.show()

@@ -76,8 +76,8 @@ def fit_black_body_flux_spec(Spec,TempVec=None,FLuxUnits=None,comments="#",WaveU
 		print('you provided a filename for the spectrum')
 		Spectrum = np.genfromtxt(Spec, comments=comments)
 	elif isinstance(Spec, np.ndarray):
-		print('you provided a numpy array for the spectrum')
-		print('Spec is',Spec)
+		#print('you provided a numpy array for the spectrum')
+		#print('Spec is',Spec)
 		#pdb.set_trace()
 		Spectrum = copy.copy(Spec)
 	else:
@@ -115,17 +115,17 @@ def fit_black_body_flux_spec(Spec,TempVec=None,FLuxUnits=None,comments="#",WaveU
 		#print 'Spectrum corrected',Spectrum_corrected
 		# Spectrum_corrected is now in meters and flux
 	elif Ebv==0 and z!=0:
-		print('You provided redshift corrections only')
+		#print('You provided redshift corrections only')
 		Spectrum_corrected=correct_spectrum.correct_spectrum_for_redshift_and_extinction(Spectrum,Ebv=0,comments="#",WaveUnits=WaveUnits,z=z,show_plot=False,title=None,output_pdf_file=output_pdf_file)
 		#Spectrum_corrected[:,1]=correct_spectrum.correct_spectrum_for_redshift(Spectrum_in_meters,comments="#",WaveUnits='m',z=z,show_plot=True,title=None)[:,1]
 		#Spectrum_corrected[:,0]=correct_spectrum.correct_spectrum_for_redshift(Spectrum_in_meters,comments="#",WaveUnits='m',z=z,show_plot=True,title=None)[:,0]
 	elif Ebv!=0 and z!=0:
-		print('You provided both extinction and redshift corrections')
+		#print('You provided both extinction and redshift corrections')
 		Spectrum_corrected = correct_spectrum.correct_spectrum_for_redshift_and_extinction(Spectrum, Ebv=Ebv, comments="#",
 																					   WaveUnits=WaveUnits, z=z,
 																					   show_plot=False, title=None)
 	else:
-		print('You provided no corrections')
+		#print('You provided no corrections')
 		Spectrum_corrected=copy.copy(Spectrum)
 	#Spectrum_corrected[:,1]=correct_spectrum.correct_spectrum_for_redshift_and_extinction(Spectrum_in_meters,Ebv=Ebv,comments="#",WaveUnits='m',z=z,show_plot=True,title=None)[:,1]
 		#Spectrum_corrected[:,0] =correct_spectrum.correct_spectrum_for_redshift_and_extinction(Spectrum_in_meters,Ebv=Ebv,comments="#",WaveUnits='m',z=z,show_plot=True,title=None)[:,0]
@@ -341,8 +341,8 @@ def fit_black_body_flux_spec(Spec,TempVec=None,FLuxUnits=None,comments="#",WaveU
 	best_fit_spectrum[:,1]=best_coeff1 * black_body_flux_density.black_body_flux_density(best_temp, np.linspace(1e-10,1e-6,num=1000), 'P')[2][:,
                          1]
 	np.savetxt(path_to_best_fit_spectrum,best_fit_spectrum,header='Wavelength $[\AA]$,Flux $[erg/sec/cm^2/\AA ]$')
-	print('Spectrum inside fit_bb is',Spectrum)
-	print('Spec is',Spec)
+	#print('Spectrum inside fit_bb is',Spectrum)
+	#print('Spec is',Spec)
 	#pdb.set_trace()
 	return Xi_array,best_temp,index_min, best_coeff1, best_radius,best_luminosity
 
