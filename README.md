@@ -54,6 +54,7 @@ from the `SLAB_Diffusion` directory
 >>> import SLAB_Diffusion
 >>> SLAB_Diffusion.calculate_T_and_R_in_time()
 ```
-![Alt text](./SLAB_Diffusion/outputs/Initial_center.png?raw=true "Title")
+![temperature](./SLAB_Diffusion/outputs/Initial_center.png)
+
 
 
