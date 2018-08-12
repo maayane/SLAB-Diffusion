@@ -58,8 +58,8 @@ The following images will be stored in you outputs directory.
 
 <p align="center">
   <img src="./SLAB_Diffusion/outputs/images2D/Initial_center.png" width="350">
-    <img src="./SLAB_Diffusion/outputs/images2D/image_001.0.png" width="350">
-   <img src="./SLAB_Diffusion/outputs/temperature_surface.png" width="350">
+  <img src="./SLAB_Diffusion/outputs/images2D/image_001.0.png" width="350">
+  <img src="./SLAB_Diffusion/outputs/temperature_surface.png" width="350">
   <img src="./SLAB_Diffusion/outputs/R_T_surface.png" width="350"> 
 </p>
 
