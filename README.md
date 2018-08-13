@@ -12,7 +12,7 @@ The `SLAB-Diffusion` package is a tool for modeling the radiative diffusion of p
 
 The `SLAB_Diffusion` package was used in [Soumagnac et al, 2018]() to model the radiative diffusion of photons through a slab of circumstellar material. 
 
-The version available here assumes constant density (and hence diffusion constant) in the slab. A more sophisticated version with varying density can be made available on demand by emailing maayane.soumagnac at weizmann.ac.il
+The version available here assumes constant density (and hence constant diffusion constant $D=h^2/t_D$) in the slab. A more sophisticated version with varying density can be made available on demand by emailing maayane.soumagnac at weizmann.ac.il
 
 ## Credit
 If you are using SLAB-Diffusion, please reference Soumagnac et al. 2018 
